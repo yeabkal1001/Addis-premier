@@ -77,7 +77,7 @@ export default function Home() {
         <div className="absolute bottom-6 left-4 sm:bottom-20 sm:left-12 z-[60] flex flex-col gap-4 max-w-[650px]">
           <h1 
             style={{ fontFamily: "'Anton', sans-serif", letterSpacing: '0.02em', lineHeight: 1.05 }}
-            className="text-4xl sm:text-[64px] text-white uppercase drop-shadow-2xl"
+            className="text-3xl sm:text-[48px] text-white uppercase drop-shadow-2xl"
           >
             5 Week Sports<br />Summer Camp
           </h1>
@@ -89,14 +89,14 @@ export default function Home() {
               { icon: Clock, text: '9:00 AM - 12:00 PM' },
               { icon: Users, text: '6 - 15 Years Old' },
             ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-1.5 sm:gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest shadow-lg">
-                <item.icon size={14} className="text-white/80" />
+              <div key={idx} className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest shadow-lg">
+                <item.icon size={12} className="text-white/80" />
                 <span>{item.text}</span>
               </div>
             ))}
           </div>
           
-          <p className="text-white/80 text-sm sm:text-base font-medium tracking-wide mt-2 max-w-[500px]">
+          <p className="text-white/80 text-xs sm:text-sm font-medium tracking-wide mt-2 max-w-[500px]">
             Play. Learn. Grow. Develop skills, build confidence, make memories.
           </p>
         </div>
