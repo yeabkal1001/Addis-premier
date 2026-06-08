@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, MapPin, Calendar, Clock, Users } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import CampDetails from '../components/CampDetails';
@@ -8,9 +8,12 @@ import Activities from '../components/Activities';
 import ProgramOptions from '../components/ProgramOptions';
 import Footer from '../components/Footer';
 import RegisterModal from '../components/RegisterModal';
+import LoadingScreen from '../components/LoadingScreen';
 
 export default function Home() {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleOpen = () => setIsRegisterOpen(true);
@@ -18,8 +21,15 @@ export default function Home() {
     return () => window.removeEventListener('open-register', handleOpen);
   }, []);
 
+  const handleVideoReady = () => {
+    if ((window as any).__loadingScreenComplete) {
+      (window as any).__loadingScreenComplete();
+    }
+  };
+
   return (
     <main className="w-full min-h-screen">
+      {!isLoaded && <LoadingScreen onReady={() => setIsLoaded(true)} />}
       <Navbar />
       <RegisterModal isOpen={isRegisterOpen} onClose={() => setIsRegisterOpen(false)} />
       
@@ -28,11 +38,13 @@ export default function Home() {
         
         {/* Background Video */}
         <video
+          ref={videoRef}
           src="/lv_0_20260608120325_001.mp4"
           autoPlay
           loop
           muted
           playsInline
+          onCanPlayThrough={handleVideoReady}
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
         />
 
